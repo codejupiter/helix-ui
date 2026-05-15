@@ -33,6 +33,11 @@ function Example() {
 
 **All 16 planned primitives shipped.** 112 tests passing.
 
+## Documentation
+
+- [API reference](docs/API.md) — install, exports, compound components, theming, package shape, and bundle budgets.
+- [Accessibility contract](docs/ACCESSIBILITY.md) — primitive behavior, consumer responsibilities, testing strategy, and release checklist.
+
 | Primitive    | Notes                                                         |
 | ------------ | ------------------------------------------------------------- |
 | Button       | 4 variants, 3 sizes, loading state, icon slots                |
@@ -120,17 +125,25 @@ A few engineering details worth noting:
 
 ```bash
 # Install
-pnpm install
+npm install
 
 # Run tests in watch mode
-pnpm --filter @codejupiter/helix-ui test:watch
+npm run test:watch
 
 # Build the library
-pnpm --filter @codejupiter/helix-ui build
+npm run build
 
 # Typecheck
-pnpm --filter @codejupiter/helix-ui typecheck
+npm run typecheck
+
+# Verify bundle budgets and package contents
+npm run size
+npm run pack:check
 ```
+
+## Quality gates
+
+GitHub Actions runs production audit, lint, typecheck, the full Vitest component suite, package build, bundle-size budgets, and `npm pack --dry-run`. This keeps the library honest as a publishable package, not just a local component demo.
 
 ## License
 

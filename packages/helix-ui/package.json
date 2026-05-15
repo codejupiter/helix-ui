@@ -4,9 +4,13 @@
   "description": "Custom-built, accessible React component primitives.",
   "author": "Zoriah Cocio <info@zoriahcocio.com>",
   "license": "MIT",
+  "homepage": "https://github.com/codejupiter/helix-ui#readme",
   "repository": {
     "type": "git",
     "url": "https://github.com/codejupiter/helix-ui.git"
+  },
+  "bugs": {
+    "url": "https://github.com/codejupiter/helix-ui/issues"
   },
   "type": "module",
   "main": "./dist/index.cjs",
@@ -22,6 +26,7 @@
   },
   "files": [
     "dist",
+    "docs",
     "README.md",
     "LICENSE"
   ],
@@ -34,7 +39,9 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "typecheck": "tsc --noEmit --pretty false",
-    "lint": "eslint src --ext .ts,.tsx --max-warnings 0"
+    "lint": "eslint src --ext .ts,.tsx --max-warnings 0",
+    "size": "node scripts/check-bundle-size.mjs",
+    "pack:check": "npm pack --dry-run"
   },
   "peerDependencies": {
     "react": ">=18",
@@ -64,7 +71,11 @@
     "components",
     "ui",
     "accessibility",
-    "design-system"
+    "design-system",
+    "typescript",
+    "wcag",
+    "compound-components",
+    "component-library"
   ],
   "publishConfig": {
     "access": "public"
