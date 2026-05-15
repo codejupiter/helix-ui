@@ -1,0 +1,29 @@
+name: Primitive request
+description: Propose a new primitive or behavior improvement.
+title: "feat: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: use_case
+    attributes:
+      label: Use case
+      description: What interface workflow should this primitive or behavior support?
+    validations:
+      required: true
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected behavior
+      description: Describe the smallest useful version.
+    validations:
+      required: true
+  - type: textarea
+    id: accessibility
+    attributes:
+      label: Accessibility considerations
+      description: Keyboard, focus, ARIA, labeling, screen-reader, or motion concerns.
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Native elements, app-level composition, or other libraries that could solve this.

@@ -37,6 +37,9 @@ function Example() {
 
 - [API reference](docs/API.md) — install, exports, compound components, theming, package shape, and bundle budgets.
 - [Accessibility contract](docs/ACCESSIBILITY.md) — primitive behavior, consumer responsibilities, testing strategy, and release checklist.
+- [Release checklist](docs/RELEASE_CHECKLIST.md) — validation gates, package contents, npm publishing, and next release candidates.
+- [Helix UI v0.1.0 release notes](docs/releases/helix-ui-v0.1.0.md) — release summary, engineering highlights, evidence, and known limits.
+- [Changelog](CHANGELOG.md) — package release history.
 
 | Primitive    | Notes                                                         |
 | ------------ | ------------------------------------------------------------- |
@@ -144,6 +147,8 @@ npm run pack:check
 ## Quality gates
 
 GitHub Actions runs production audit, lint, typecheck, the full Vitest component suite, package build, bundle-size budgets, and `npm pack --dry-run`. This keeps the library honest as a publishable package, not just a local component demo.
+
+Before publishing or creating a GitHub release, run the [release checklist](docs/RELEASE_CHECKLIST.md).
 
 ## License
 
