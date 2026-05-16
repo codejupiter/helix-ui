@@ -4,6 +4,16 @@ Helix UI exports accessible React primitives from a single package entrypoint an
 
 ## Install
 
+The package is release-ready but not published to npm yet. Until publishing is complete, validate the local package artifact from this directory:
+
+```bash
+npm install
+npm run build
+npm run pack:check
+```
+
+After npm publication, the consumer install command will be:
+
 ```bash
 npm install @codejupiter/helix-ui
 ```

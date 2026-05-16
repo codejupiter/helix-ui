@@ -1,12 +1,20 @@
 # Helix UI
 
-Custom-built, accessible React component primitives.
+Accessible React component primitives built from scratch.
 
-A personal project exploring what it takes to build a serious component library from scratch — without leaning on Radix, Headless UI, or other headless frameworks. Every primitive is hand-rolled with care for accessibility, keyboard navigation, and bundle size.
+Helix UI is a package-quality component library focused on the hard parts of frontend UI engineering: keyboard interaction, focus management, ARIA state, tokenized styling, bundle budgets, and testable compound-component APIs.
+
+It deliberately avoids Radix, Headless UI, and other headless frameworks so the implementation proves the underlying mechanics rather than wrapping somebody else's primitives.
+
+**Release status:** v0.1.0 is tagged, release-ready, and validated by CI. The npm package has not been published yet, so the current install path is local package verification:
 
 ```bash
-npm install @codejupiter/helix-ui
+npm install
+npm run build
+npm run pack:check
 ```
+
+Example consumer API once installed from the workspace or future package:
 
 ```tsx
 import '@codejupiter/helix-ui/styles.css';
@@ -31,7 +39,15 @@ function Example() {
 
 ## Status
 
-**All 16 planned primitives shipped.** 112 tests passing.
+**All 16 planned primitives shipped.** 112 tests passing. Zero runtime dependencies.
+
+| Signal | Evidence |
+| ------ | -------- |
+| Primitive coverage | 16 shipped primitives across inputs, overlays, navigation, feedback, and display |
+| Accessibility ownership | Custom focus trap, roving tabindex, ARIA listbox/combobox patterns, visible focus rings |
+| Test coverage | 112 Vitest + Testing Library interaction tests |
+| Bundle discipline | 8.4 KB gzip ESM bundle, 4.1 KB gzip CSS |
+| Release discipline | CI runs audit, lint, typecheck, tests, build, size budgets, and package dry run |
 
 ## Documentation
 
@@ -74,8 +90,8 @@ Real measurements from the latest build:
 
 | Output      | Raw     | Gzipped |
 | ----------- | ------- | ------- |
-| ESM bundle  | 38 KB   | 8.6 KB  |
-| CSS         | 26 KB   | 4.2 KB  |
+| ESM bundle  | 38 KB   | 8.4 KB  |
+| CSS         | 26 KB   | 4.1 KB  |
 
 Zero runtime dependencies. React 18+ peer dependency only.
 
@@ -117,6 +133,17 @@ Every primitive is built against WCAG 2.1 AA standards.
 ## Architecture highlights
 
 A few engineering details worth noting:
+
+```mermaid
+flowchart LR
+  Tokens["CSS token layer"] --> Styles["styles.css"]
+  Hooks["Interaction hooks"] --> Components["Primitive components"]
+  Styles --> Components
+  Components --> Exports["Tree-shakeable package exports"]
+  Tests["Interaction and accessibility tests"] --> Components
+  Size["Bundle budget script"] --> Release["Release-ready package artifact"]
+  Exports --> Release
+```
 
 - **Compound components for complex primitives.** Dialog, Tabs, Accordion, Select, and DropdownMenu use `Object.assign` exports (e.g. `Tabs.List`, `Tabs.Trigger`, `Tabs.Content`) to keep their APIs cohesive while remaining tree-shakeable.
 - **Context-driven shared state.** RadioGroup, Tabs, Accordion, Select, and Dialog use React Context to share state between root and children without prop drilling. Each context throws a helpful error if used outside its parent.
